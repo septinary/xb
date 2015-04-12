@@ -12,7 +12,7 @@ import com.septinary.xb.core.utils.Pager;
 /** 
  * 底层基本的dao的接口 
  *  
- * @author javaing(www.javaing.net) 
+ * @author lin.tb
  *  
  * @param <T> 
  * @param <PK> 

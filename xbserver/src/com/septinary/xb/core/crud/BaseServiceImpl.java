@@ -1,29 +1,21 @@
 package com.septinary.xb.core.crud;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
-import org.mybatis.spring.support.SqlSessionDaoSupport;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
-
 import com.septinary.xb.core.utils.DetailsPager;
 import com.septinary.xb.core.utils.Pager;
 
 
-//@Repository
+/**
+ * 
+ * @author lin.tb
+ *
+ * @param <T>
+ * @param <PK>
+ */
 public abstract class BaseServiceImpl<T, PK extends Serializable>  implements BaseService<T, PK> {
 
 	public static Logger logger = Logger.getLogger(BaseServiceImpl.class);

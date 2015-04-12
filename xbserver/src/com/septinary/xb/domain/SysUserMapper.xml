@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.septinary.xb.mapper.sys.SysUserMapper">
+	<!-- 如果mybatis-config.xml启用，type可以使用typeAlias中别名 -->
+	<sql id='TABLE_NAME'>SYS_USER</sql>
+	<sql id='TABLE_SEQUENCE'>SEQ_SYS_USER.nextval</sql>
+	<resultMap type="com.septinary.xb.domain.SysUser" id="sysUserMap">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="age" column="age" />
+		<result property="remark" column="remark" />
+	</resultMap>
+	<!-- <insert id="insert" parameterType="sysUserMap"> <selectKey keyProperty="id" 
+		resultType="int" order="BEFORE"> select <include refid="TABLE_SEQUENCE" /> 
+		from dual </selectKey> insert into <include refid="TABLE_NAME" /> (ID,NAME,AGE,remark) 
+		values ( #{id}, #{name}, #{age}, #{remark}) </insert> -->
+	<select id="fetch" parameterType="int" resultMap="sysUserMap">
+		select
+		id,name,age,remark
+		from sys_user where id=#{id}
+	</select>
+	<select id="findAll" resultType="com.septinary.xb.domain.SysUser">
+		select * from sys_user
+	</select>
+	<select id="queryList" parameterType="map" resultType="com.septinary.xb.domain.SysUser">
+		select * from sys_user
+		<where>
+			<include refid="condition" />
+		</where>
+		<if test="orderBy!=null">
+			order by ${orderBy}
+		</if>		
+	</select>
+	<sql id="condition">
+		<if test="name!= null">
+			and name = #{name}
+		</if>
+		<if test="age!= null">
+			and age = #{age}
+		</if>
+	</sql>
+</mapper>
